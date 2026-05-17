@@ -1,0 +1,15 @@
+# Entorno virtual
+.venv/
+venv/
+ENV/
+
+# Caché de FastF1 y Datos locales
+data/cache/
+data/raw/
+
+# Archivos del sistema y de VSC
+.vscode/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
