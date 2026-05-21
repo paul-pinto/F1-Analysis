@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 name: Extract and Load F1 Data
 
 on:
   push:
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -37,37 +37,3 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
           DEV_MODE: ${{ github.ref_name != 'main' && 'true' || 'false' }}
         run: python scripts/load.py
-=======
-name: Extract F1 Data
-
-on:
-  push:
-    branches: [ main ]
-  workflow_dispatch: # Esto permite activar el pipeline manualmente desde la web de GitHub
-
-jobs:
-  extract:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Descargar codigo del repositorio
-        uses: actions/checkout@v4
-
-      - name: Configurar Python 3.13
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-
-      # Evita que GitHub penalice o bloquee las descargas por exceso de peticiones a FastF1
-      - name: Configurar Cache para FastF1
-        uses: actions/cache@v4
-        with:
-          path: data/cache
-          key: fastf1
-
-      - name: Instalar dependencias
-        run: pip install -r requirements.txt
-
-      - name: Ejecutar el Pipeline de Extraccion
-        run: python scripts/extract.py
->>>>>>> origin/main
