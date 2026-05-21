@@ -12,9 +12,13 @@ data/raw/
 .DS_Store
 Thumbs.db
 __pycache__/
+<<<<<<< HEAD
 *.pyc
 
 # Otros archivos temporales
 *.ipynb
 mci506-paul-pinto-f017918dad68.json
 .env
+=======
+*.pyc
+>>>>>>> origin/main
