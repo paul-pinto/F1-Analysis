@@ -7,7 +7,7 @@ import pandas as pd
 from google.cloud import storage
 from google.oauth2 import service_account
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data/raw"
 CACHE_DIR = ROOT / "data/cache"
 

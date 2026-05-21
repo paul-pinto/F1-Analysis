@@ -20,7 +20,7 @@ from scripts.utils import GCS_BUCKET, RAW_DIR, RAW_PREFIX, gcs_client
 load_dotenv()
 
 # Patrón: {dataset}_{year}_{slug}.parquet  o  {dataset}_{year}.parquet
-_FILENAME_RE = re.compile(r"^(?P<dataset>[a-z]+)_(?P<year>\d{4})")
+_FILENAME_RE = re.compile(r"^(?P<dataset>[a-z]+)_(?P<year>\d{4})(?:_(?P<eventname>[^.]+))?\.parquet$")
 
 
 def _gcs_path(filename: str) -> str:
@@ -33,6 +33,9 @@ def _gcs_path(filename: str) -> str:
         raise ValueError(f"Nombre de archivo inesperado: {filename}")
     dataset = m.group("dataset")
     year = m.group("year")
+    eventname = m.group("eventname")
+    if eventname:
+        return f"{RAW_PREFIX}/{dataset}/year={year}/eventname={eventname}/{filename}"
     return f"{RAW_PREFIX}/{dataset}/year={year}/{filename}"
 
 
